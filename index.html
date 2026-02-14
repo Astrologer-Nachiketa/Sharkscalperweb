@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,15 +9,49 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
-        body { background-color: #0a0e17; color: #ffffff; font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
-        .hero-gradient { background: radial-gradient(circle at 50% 50%, #1e293b 0%, #0a0e17 100%); }
-        .accent-color { color: #00ffcc; }
-        .btn-glow { transition: all 0.3s ease; }
-        .btn-glow:hover { box-shadow: 0 0 20px rgba(0, 255, 204, 0.4); transform: translateY(-2px); }
-        .video-card { background: #161b22; border: 1px solid #30363d; border-radius: 12px; transition: transform 0.3s ease; overflow: hidden; }
-        .video-card:hover { transform: translateY(-5px); border-color: #00ffcc55; }
-        .glass-nav { background: rgba(10, 14, 23, 0.8); backdrop-filter: blur(10px); border-bottom: 1px solid #30363d; }
-        
+        body {
+            background-color: #0a0e17;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        .hero-gradient {
+            background: radial-gradient(circle at 50% 50%, #1e293b 0%, #0a0e17 100%);
+        }
+
+        .accent-color {
+            color: #00ffcc;
+        }
+
+        .btn-glow {
+            transition: all 0.3s ease;
+        }
+
+        .btn-glow:hover {
+            box-shadow: 0 0 20px rgba(0, 255, 204, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .video-card {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 12px;
+            transition: transform 0.3s ease;
+            overflow: hidden;
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+            border-color: #00ffcc55;
+        }
+
+        .glass-nav {
+            background: rgba(10, 14, 23, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #30363d;
+        }
+
         /* Onboarding Modal Styles */
         .modal-overlay {
             position: fixed;
@@ -34,10 +69,12 @@
             visibility: hidden;
             transition: all 0.3s ease;
         }
+
         .modal-overlay.active {
             opacity: 1;
             visibility: visible;
         }
+
         .modal-content {
             background: #0d1117;
             border: 1px solid #30363d;
@@ -52,7 +89,7 @@
             overflow-y: auto;
             margin: 10px;
         }
-        
+
         @media (max-width: 640px) {
             .modal-content {
                 width: 100%;
@@ -65,41 +102,61 @@
                 right: 0;
             }
         }
+
         .modal-overlay.active .modal-content {
             transform: scale(1);
         }
-        
+
         /* Shark swimming animation */
         @keyframes swim {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            25% { transform: translateY(-15px) rotate(-2deg); }
-            50% { transform: translateY(0) rotate(0deg); }
-            75% { transform: translateY(-10px) rotate(2deg); }
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            25% {
+                transform: translateY(-15px) rotate(-2deg);
+            }
+
+            50% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            75% {
+                transform: translateY(-10px) rotate(2deg);
+            }
         }
+
         .shark-swim {
             animation: swim 3s ease-in-out infinite;
         }
     </style>
 </head>
+
 <body>
 
     <!-- Navigation -->
-    <nav class="glass-nav fixed w-full z-50 px-6 py-4">
+    <nav class="glass-nav fixed w-full z-50 px-3 md:px-6 py-3 md:py-4">
         <div class="max-w-6xl mx-auto flex justify-between items-center">
-            <div class="text-xl font-extrabold tracking-tighter cursor-pointer" onclick="window.scrollTo(0,0)">
+            <div class="text-base md:text-xl font-extrabold tracking-tighter cursor-pointer"
+                onclick="window.scrollTo(0,0)">
                 SHARK <span class="accent-color">WEBSCALPER</span>
             </div>
             <div class="hidden md:flex gap-8 text-sm font-semibold text-gray-300">
                 <a href="#features" class="hover:text-[#00ffcc] transition-colors">Features</a>
                 <a href="#tutorials" class="hover:text-[#00ffcc] transition-colors">Tutorials</a>
                 <a href="#pricing" class="hover:text-[#00ffcc] transition-colors">Pricing</a>
-                <button onclick="toggleHelpForum(true)" class="hover:text-[#00ffcc] transition-colors">Help Forum</button>
+                <button onclick="toggleHelpForum(true)" class="hover:text-[#00ffcc] transition-colors">Help
+                    Forum</button>
             </div>
-            <div class="flex items-center gap-4">
-                <button onclick="toggleHelpForum(true)" class="md:hidden text-[#00ffcc] hover:text-white transition-colors">
-                    <i class="fas fa-question-circle text-xl"></i>
+            <div class="flex items-center gap-2 md:gap-4">
+                <button onclick="toggleHelpForum(true)"
+                    class="md:hidden text-[#00ffcc] hover:text-white transition-colors p-2">
+                    <i class="fas fa-question-circle text-lg"></i>
                 </button>
-                <button onclick="toggleOnboarding(true)" class="bg-[#00ffcc] text-black px-6 py-2 rounded-full font-bold text-sm btn-glow">
+                <button onclick="toggleOnboarding(true)"
+                    class="bg-[#00ffcc] text-black px-4 md:px-6 py-2 rounded-full font-bold text-xs md:text-sm btn-glow">
                     Login / Join
                 </button>
             </div>
@@ -107,108 +164,129 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero-gradient min-h-screen flex flex-col items-center justify-center text-center px-6 pt-24">
-        <div class="mb-4 shark-swim">
-            <img src="sharkimg.png" alt="Shark Mascot" class="w-24 h-24 object-contain drop-shadow-lg">
+    <section
+        class="hero-gradient min-h-[85vh] md:min-h-screen flex flex-col items-center justify-center text-center px-4 md:px-6 pt-20 md:pt-24 pb-8">
+        <div class="mb-3 md:mb-4 shark-swim">
+            <img src="sharkimg.png" alt="Shark Mascot" class="w-16 h-16 md:w-24 md:h-24 object-contain drop-shadow-lg">
         </div>
-        <h1 class="text-4xl md:text-7xl font-extrabold mb-4 tracking-tight leading-tight">
+        <h1 class="text-3xl sm:text-4xl md:text-7xl font-extrabold mb-3 md:mb-4 tracking-tight leading-tight px-2">
             Trade Like a <span class="accent-color">Shark.</span>
         </h1>
-        <p class="text-gray-400 text-lg md:text-xl max-w-2xl mb-10 leading-relaxed">
-            The Ultimate Web-Based Trading Bot. No Servers. No Coding. <br class="hidden md:block"> Just Pure Profit Execution via Flattrade.
+        <p class="text-gray-400 text-base sm:text-lg md:text-xl max-w-2xl mb-6 md:mb-10 leading-relaxed px-4">
+            The Ultimate Web-Based Trading Bot. No Servers. No Coding. <br class="hidden md:block"> Just Pure Profit
+            Execution via Flattrade.
         </p>
-        <div class="flex flex-col md:flex-row gap-6">
-            <button onclick="toggleOnboarding(true)" class="bg-[#00ffcc] text-black px-12 py-4 rounded-full font-bold text-lg btn-glow">
+        <div class="flex flex-col sm:flex-row gap-3 md:gap-6 w-full sm:w-auto px-4 sm:px-0">
+            <button onclick="toggleOnboarding(true)"
+                class="bg-[#00ffcc] text-black px-8 md:px-12 py-3 md:py-4 rounded-full font-bold text-base md:text-lg btn-glow w-full sm:w-auto">
                 Get Started Now
             </button>
-            <a href="#tutorials" class="border border-gray-600 px-12 py-4 rounded-full font-bold text-lg hover:bg-gray-800 transition-all flex items-center justify-center gap-2">
-                <i class="fas fa-play text-sm"></i> Watch Demo
+            <a href="#tutorials"
+                class="border border-gray-600 px-8 md:px-12 py-3 md:py-4 rounded-full font-bold text-base md:text-lg hover:bg-gray-800 transition-all flex items-center justify-center gap-2 w-full sm:w-auto">
+                <i class="fas fa-play text-xs md:text-sm"></i> Watch Demo
             </a>
         </div>
-        <div class="mt-20 w-full max-w-5xl px-4">
-            <div class="bg-gradient-to-b from-[#30363d] to-transparent p-[1px] rounded-t-2xl">
-                <div class="bg-[#0a0e17] rounded-t-2xl overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1611974717483-58da3c1fc855?auto=format&fit=crop&q=80&w=1200" alt="Dashboard Preview" class="opacity-80">
-                </div>
-            </div>
-        </div>
+
     </section>
 
     <!-- Features -->
-    <section id="features" class="py-32 px-6 max-w-6xl mx-auto">
-        <div class="text-center mb-20">
-            <h2 class="text-3xl md:text-5xl font-extrabold mb-4">Engineered for <span class="accent-color">Speed</span></h2>
-            <p class="text-gray-400">Institutional grade tools for the modern retail trader.</p>
+    <section id="features" class="py-16 md:py-32 px-4 md:px-6 max-w-6xl mx-auto">
+        <div class="text-center mb-10 md:mb-20">
+            <h2 class="text-2xl md:text-5xl font-extrabold mb-3 md:mb-4">Engineered for <span
+                    class="accent-color">Speed</span></h2>
+            <p class="text-gray-400 text-sm md:text-base">Institutional grade tools for the modern retail trader.</p>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-            <div class="p-10 video-card">
-                <div class="w-16 h-16 bg-[#00ffcc11] rounded-2xl flex items-center justify-center mb-8">
-                    <i class="fas fa-window-maximize text-3xl accent-color"></i>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-10">
+            <div class="p-6 md:p-10 video-card">
+                <div
+                    class="w-12 h-12 md:w-16 md:h-16 bg-[#00ffcc11] rounded-xl md:rounded-2xl flex items-center justify-center mb-4 md:mb-8">
+                    <i class="fas fa-window-maximize text-2xl md:text-3xl accent-color"></i>
                 </div>
-                <h3 class="text-2xl font-bold mb-4">Browser Native</h3>
-                <p class="text-gray-400 leading-relaxed">Run directly in Chrome or Edge. No VPS costs or complicated Python environments required.</p>
+                <h3 class="text-xl md:text-2xl font-bold mb-2 md:mb-4">Browser Native</h3>
+                <p class="text-gray-400 text-sm md:text-base leading-relaxed">Run directly in Chrome or Edge. No VPS
+                    costs or complicated Python environments required.</p>
             </div>
-            <div class="p-10 video-card border-[#00ffcc44]">
-                <div class="w-16 h-16 bg-[#00ffcc11] rounded-2xl flex items-center justify-center mb-8">
-                    <i class="fas fa-bolt text-3xl accent-color"></i>
+            <div class="p-6 md:p-10 video-card border-[#00ffcc44]">
+                <div
+                    class="w-12 h-12 md:w-16 md:h-16 bg-[#00ffcc11] rounded-xl md:rounded-2xl flex items-center justify-center mb-4 md:mb-8">
+                    <i class="fas fa-bolt text-2xl md:text-3xl accent-color"></i>
                 </div>
-                <h3 class="text-2xl font-bold mb-4">0.5ms Execution</h3>
-                <p class="text-gray-400 leading-relaxed">Direct Flattrade API integration ensures your orders hit the exchange with minimal latency.</p>
+                <h3 class="text-xl md:text-2xl font-bold mb-2 md:mb-4">0.5ms Execution</h3>
+                <p class="text-gray-400 text-sm md:text-base leading-relaxed">Direct Flattrade API integration ensures
+                    your orders hit the exchange with minimal latency.</p>
             </div>
-            <div class="p-10 video-card">
-                <div class="w-16 h-16 bg-[#00ffcc11] rounded-2xl flex items-center justify-center mb-8">
-                    <i class="fab fa-telegram-plane text-3xl accent-color"></i>
+            <div class="p-6 md:p-10 video-card">
+                <div
+                    class="w-12 h-12 md:w-16 md:h-16 bg-[#00ffcc11] rounded-xl md:rounded-2xl flex items-center justify-center mb-4 md:mb-8">
+                    <i class="fab fa-telegram-plane text-2xl md:text-3xl accent-color"></i>
                 </div>
-                <h3 class="text-2xl font-bold mb-4">Real-time Pings</h3>
-                <p class="text-gray-400 leading-relaxed">Instant Telegram notifications for every entry, exit, and trailing stop-loss movement.</p>
+                <h3 class="text-xl md:text-2xl font-bold mb-2 md:mb-4">Real-time Pings</h3>
+                <p class="text-gray-400 text-sm md:text-base leading-relaxed">Instant Telegram notifications for every
+                    entry, exit, and trailing stop-loss movement.</p>
             </div>
         </div>
     </section>
 
     <!-- Video Tutorials Section -->
-    <section id="tutorials" class="py-32 px-6 bg-[#0d1117] border-y border-gray-800">
+    <section id="tutorials" class="py-16 md:py-32 px-4 md:px-6 bg-[#0d1117] border-y border-gray-800">
         <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-20">
-                <h2 class="text-3xl md:text-5xl font-extrabold mb-4">Master the <span class="accent-color">Shark</span></h2>
-                <p class="text-gray-400">Step-by-step video guides to get you trading in minutes.</p>
+            <div class="text-center mb-10 md:mb-20">
+                <h2 class="text-2xl md:text-5xl font-extrabold mb-3 md:mb-4">Master the <span
+                        class="accent-color">Shark</span></h2>
+                <p class="text-gray-400 text-sm md:text-base">Step-by-step video guides to get you trading in minutes.
+                </p>
             </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                <!-- Tutorial 1 -->
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12">
+                <!-- Tutorial 1 - Live Scalping Session -->
                 <div class="video-card bg-[#1c2128]">
-                    <div class="aspect-video w-full">
-                        <iframe class="w-full h-full" 
-                            src="https://www.youtube.com/embed/Sc63p8uocGg" 
-                            title="Platform Setup Guide" frameborder="0" 
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                            allowfullscreen></iframe>
-                    </div>
-                    <div class="p-8">
-                        <div class="flex items-center gap-3 mb-3">
-                            <span class="px-3 py-1 bg-[#00ffcc22] text-[#00ffcc] text-xs font-bold rounded-full uppercase">Setup</span>
-                            <span class="text-gray-500 text-sm">8:15 mins</span>
+                    <div class="aspect-video w-full relative video-container" data-video-id="_4TPpFImy_s">
+                        <img src="https://img.youtube.com/vi/_4TPpFImy_s/maxresdefault.jpg"
+                            alt="Live Scalping Session Thumbnail"
+                            class="w-full h-full object-cover cursor-pointer video-thumbnail">
+                        <div
+                            class="absolute inset-0 bg-black/40 flex items-center justify-center cursor-pointer video-play-btn">
+                            <div
+                                class="w-12 h-12 md:w-16 md:h-16 bg-red-600 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform">
+                                <i class="fas fa-play text-white text-lg md:text-2xl ml-1"></i>
+                            </div>
                         </div>
-                        <h3 class="font-bold text-2xl mb-3">Complete Platform Setup</h3>
-                        <p class="text-gray-400 leading-relaxed italic">"Everything from API login to placing your first automated trade."</p>
+                    </div>
+                    <div class="p-4 md:p-8">
+                        <div class="flex items-center gap-2 md:gap-3 mb-2 md:mb-3">
+                            <span
+                                class="px-2 md:px-3 py-1 bg-purple-500/20 text-purple-400 text-[10px] md:text-xs font-bold rounded-full uppercase">Live</span>
+                            <span class="text-gray-500 text-xs md:text-sm">Scalping</span>
+                        </div>
+                        <h3 class="font-bold text-lg md:text-2xl mb-2 md:mb-3">Live Scalping Session</h3>
+                        <p class="text-gray-400 text-sm md:text-base leading-relaxed italic">"Real-time scalping
+                            strategies and execution in live market conditions."</p>
                     </div>
                 </div>
 
-                <!-- Tutorial 2 -->
+                <!-- Tutorial 2 - Complete Platform Setup -->
                 <div class="video-card bg-[#1c2128]">
-                    <div class="aspect-video w-full">
-                        <iframe class="w-full h-full" 
-                            src="https://www.youtube.com/embed/Yp-d-g_n0Rk" 
-                            title="Live Scalping Demo" frameborder="0" 
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                            allowfullscreen></iframe>
-                    </div>
-                    <div class="p-8">
-                        <div class="flex items-center gap-3 mb-3">
-                            <span class="px-3 py-1 bg-purple-500/20 text-purple-400 text-xs font-bold rounded-full uppercase">Live</span>
-                            <span class="text-gray-500 text-sm">12:30 mins</span>
+                    <div class="aspect-video w-full relative video-container" data-video-id="AWA8kxYBpoQ">
+                        <img src="https://img.youtube.com/vi/AWA8kxYBpoQ/maxresdefault.jpg"
+                            alt="Complete Platform Setup Thumbnail"
+                            class="w-full h-full object-cover cursor-pointer video-thumbnail">
+                        <div
+                            class="absolute inset-0 bg-black/40 flex items-center justify-center cursor-pointer video-play-btn">
+                            <div
+                                class="w-12 h-12 md:w-16 md:h-16 bg-red-600 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform">
+                                <i class="fas fa-play text-white text-lg md:text-2xl ml-1"></i>
+                            </div>
                         </div>
-                        <h3 class="font-bold text-2xl mb-3">Live Scalping Session</h3>
-                        <p class="text-gray-400 leading-relaxed italic">"Watch the Shark handle extreme BankNifty volatility on expiry day."</p>
+                    </div>
+                    <div class="p-4 md:p-8">
+                        <div class="flex items-center gap-2 md:gap-3 mb-2 md:mb-3">
+                            <span
+                                class="px-2 md:px-3 py-1 bg-[#00ffcc22] text-[#00ffcc] text-[10px] md:text-xs font-bold rounded-full uppercase">Setup</span>
+                            <span class="text-gray-500 text-xs md:text-sm">Complete Guide</span>
+                        </div>
+                        <h3 class="font-bold text-lg md:text-2xl mb-2 md:mb-3">Complete Platform Setup</h3>
+                        <p class="text-gray-400 text-sm md:text-base leading-relaxed italic">"Step-by-step walkthrough
+                            for initial platform configuration and setup."</p>
                     </div>
                 </div>
             </div>
@@ -216,72 +294,112 @@
     </section>
 
     <!-- Pricing Section -->
-    <section id="pricing" class="py-32 px-6">
+    <section id="pricing" class="py-16 md:py-32 px-4 md:px-6">
         <div class="max-w-6xl mx-auto text-center">
-            <h2 class="text-3xl md:text-5xl font-extrabold mb-4">Choose Your <span class="accent-color">Plan</span></h2>
-            <p class="text-gray-400 mb-20 text-lg">Scale your trading with professional automation.</p>
+            <h2 class="text-2xl md:text-5xl font-extrabold mb-3 md:mb-4">Choose Your <span
+                    class="accent-color">Plan</span></h2>
+            <p class="text-gray-400 mb-10 md:mb-20 text-base md:text-lg px-4">Scale your trading with professional
+                automation.</p>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-10 items-stretch">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-10 items-stretch">
                 <!-- Starter -->
-                <div class="video-card p-12 flex flex-col">
-                    <h3 class="text-xl font-semibold text-gray-400 mb-4">Starter</h3>
-                    <div class="text-5xl font-extrabold mb-10">₹1,999<span class="text-lg font-normal text-gray-500">/mo</span></div>
-                    <ul class="text-left space-y-6 mb-12 flex-grow">
-                        <li class="flex items-center"><i class="fas fa-check-circle accent-color mr-3 text-xl"></i> 1 Active Strategy</li>
-                        <li class="flex items-center"><i class="fas fa-check-circle accent-color mr-3 text-xl"></i> Flattrade Integration</li>
-                        <li class="flex items-center"><i class="fas fa-check-circle accent-color mr-3 text-xl"></i> Standard Support</li>
+                <div class="video-card p-6 md:p-12 flex flex-col">
+                    <h3 class="text-lg md:text-xl font-semibold text-gray-400 mb-2 md:mb-4">Starter</h3>
+                    <div class="text-3xl md:text-5xl font-extrabold mb-6 md:mb-10">₹1,999<span
+                            class="text-sm md:text-lg font-normal text-gray-500">/mo</span></div>
+                    <ul class="text-left space-y-3 md:space-y-6 mb-6 md:mb-12 flex-grow text-sm md:text-base">
+                        <li class="flex items-center"><i
+                                class="fas fa-check-circle accent-color mr-2 md:mr-3 text-base md:text-xl"></i> 1 Active
+                            Strategy</li>
+                        <li class="flex items-center"><i
+                                class="fas fa-check-circle accent-color mr-2 md:mr-3 text-base md:text-xl"></i>
+                            Flattrade Integration</li>
+                        <li class="flex items-center"><i
+                                class="fas fa-check-circle accent-color mr-2 md:mr-3 text-base md:text-xl"></i> Standard
+                            Support</li>
                     </ul>
-                    <button onclick="toggleOnboarding(true)" class="w-full border border-gray-600 py-4 rounded-full font-bold hover:bg-gray-800 transition-all">Get Starter</button>
+                    <button onclick="toggleOnboarding(true)"
+                        class="w-full border border-gray-600 py-3 md:py-4 rounded-full font-bold text-sm md:text-base hover:bg-gray-800 transition-all">Get
+                        Starter</button>
                 </div>
 
                 <!-- Pro -->
-                <div class="video-card p-12 flex flex-col border-[#00ffcc] relative bg-[#1c2128] shadow-[0_0_50px_rgba(0,255,204,0.1)] md:scale-110 z-10">
-                    <div class="absolute -top-5 left-1/2 -translate-x-1/2 bg-[#00ffcc] text-black text-xs font-black px-8 py-2 rounded-full uppercase tracking-widest">Recommended</div>
-                    <h3 class="text-xl font-semibold text-[#00ffcc] mb-4">Professional</h3>
-                    <div class="text-6xl font-extrabold mb-10">₹4,499<span class="text-lg font-normal text-gray-500">/mo</span></div>
-                    <ul class="text-left space-y-6 mb-12 flex-grow text-gray-200">
-                        <li class="flex items-center"><i class="fas fa-bolt accent-color mr-3 text-xl"></i> Unlimited Strategies</li>
-                        <li class="flex items-center"><i class="fas fa-bolt accent-color mr-3 text-xl"></i> Trailing Stoploss Pro</li>
-                        <li class="flex items-center"><i class="fas fa-bolt accent-color mr-3 text-xl"></i> Multi-Account Sync</li>
-                        <li class="flex items-center"><i class="fas fa-bolt accent-color mr-3 text-xl"></i> Priority Telegram Pings</li>
+                <div
+                    class="video-card p-6 md:p-12 flex flex-col border-[#00ffcc] relative bg-[#1c2128] shadow-[0_0_50px_rgba(0,255,204,0.1)] md:scale-110 z-10">
+                    <div
+                        class="absolute -top-3 md:-top-5 left-1/2 -translate-x-1/2 bg-[#00ffcc] text-black text-[10px] md:text-xs font-black px-4 md:px-8 py-1.5 md:py-2 rounded-full uppercase tracking-widest">
+                        Recommended</div>
+                    <h3 class="text-lg md:text-xl font-semibold text-[#00ffcc] mb-2 md:mb-4">Professional</h3>
+                    <div class="text-4xl md:text-6xl font-extrabold mb-6 md:mb-10">₹4,499<span
+                            class="text-sm md:text-lg font-normal text-gray-500">/mo</span></div>
+                    <ul
+                        class="text-left space-y-3 md:space-y-6 mb-6 md:mb-12 flex-grow text-gray-200 text-sm md:text-base">
+                        <li class="flex items-center"><i
+                                class="fas fa-bolt accent-color mr-2 md:mr-3 text-base md:text-xl"></i> Unlimited
+                            Strategies</li>
+                        <li class="flex items-center"><i
+                                class="fas fa-bolt accent-color mr-2 md:mr-3 text-base md:text-xl"></i> Trailing
+                            Stoploss Pro</li>
+                        <li class="flex items-center"><i
+                                class="fas fa-bolt accent-color mr-2 md:mr-3 text-base md:text-xl"></i> Multi-Account
+                            Sync</li>
+                        <li class="flex items-center"><i
+                                class="fas fa-bolt accent-color mr-2 md:mr-3 text-base md:text-xl"></i> Priority
+                            Telegram Pings</li>
                     </ul>
-                    <button onclick="toggleOnboarding(true)" class="w-full bg-[#00ffcc] text-black py-5 rounded-full font-extrabold btn-glow">Go Professional</button>
+                    <button onclick="toggleOnboarding(true)"
+                        class="w-full bg-[#00ffcc] text-black py-4 md:py-5 rounded-full font-extrabold text-sm md:text-base btn-glow">Go
+                        Professional</button>
                 </div>
 
                 <!-- Lifetime -->
-                <div class="video-card p-12 flex flex-col">
-                    <h3 class="text-xl font-semibold text-gray-400 mb-4">Lifetime</h3>
-                    <div class="text-5xl font-extrabold mb-10">₹19,999<span class="text-lg font-normal text-gray-500">/once</span></div>
-                    <ul class="text-left space-y-6 mb-12 flex-grow">
-                        <li class="flex items-center"><i class="fas fa-infinity accent-color mr-3 text-xl"></i> All Pro Features</li>
-                        <li class="flex items-center"><i class="fas fa-infinity accent-color mr-3 text-xl"></i> Lifetime Updates</li>
-                        <li class="flex items-center"><i class="fas fa-infinity accent-color mr-3 text-xl"></i> 1-on-1 Setup Call</li>
+                <div class="video-card p-6 md:p-12 flex flex-col">
+                    <h3 class="text-lg md:text-xl font-semibold text-gray-400 mb-2 md:mb-4">Lifetime</h3>
+                    <div class="text-3xl md:text-5xl font-extrabold mb-6 md:mb-10">₹19,999<span
+                            class="text-sm md:text-lg font-normal text-gray-500">/once</span></div>
+                    <ul class="text-left space-y-3 md:space-y-6 mb-6 md:mb-12 flex-grow text-sm md:text-base">
+                        <li class="flex items-center"><i
+                                class="fas fa-infinity accent-color mr-2 md:mr-3 text-base md:text-xl"></i> All Pro
+                            Features</li>
+                        <li class="flex items-center"><i
+                                class="fas fa-infinity accent-color mr-2 md:mr-3 text-base md:text-xl"></i> Lifetime
+                            Updates</li>
+                        <li class="flex items-center"><i
+                                class="fas fa-infinity accent-color mr-2 md:mr-3 text-base md:text-xl"></i> 1-on-1 Setup
+                            Call</li>
                     </ul>
-                    <button onclick="toggleOnboarding(true)" class="w-full border border-gray-600 py-4 rounded-full font-bold hover:bg-gray-800 transition-all">Go Lifetime</button>
+                    <button onclick="toggleOnboarding(true)"
+                        class="w-full border border-gray-600 py-3 md:py-4 rounded-full font-bold text-sm md:text-base hover:bg-gray-800 transition-all">Go
+                        Lifetime</button>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="py-24 text-center border-t border-gray-800 px-6">
-        <h2 class="text-4xl md:text-5xl font-black mb-10 italic uppercase tracking-tighter">Join the 1% Club.</h2>
-        <p class="text-gray-400 mb-12 text-xl max-w-2xl mx-auto">500+ traders are already automating their wealth. <br class="hidden md:block"> Why are you waiting?</p>
-        
+    <footer class="py-12 md:py-24 text-center border-t border-gray-800 px-4 md:px-6">
+        <h2 class="text-2xl md:text-5xl font-black mb-6 md:mb-10 italic uppercase tracking-tighter">Join the 1% Club.
+        </h2>
+        <p class="text-gray-400 mb-8 md:mb-12 text-base md:text-xl max-w-2xl mx-auto px-4">500+ traders are already
+            automating their wealth. <br class="hidden md:block"> Why are you waiting?</p>
+
         <!-- WhatsApp Community Button -->
-        <a href="https://chat.whatsapp.com/FKOJ2xbDA93EbisBHSaVTF" target="_blank" class="inline-flex items-center bg-[#25D366] text-white px-8 py-4 rounded-full font-black text-xl btn-glow mb-6">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" class="w-8 h-8 mr-3">
-            Join Shark🚀 WebScalper Community
+        <a href="https://chat.whatsapp.com/FKOJ2xbDA93EbisBHSaVTF" target="_blank"
+            class="inline-flex items-center bg-[#25D366] text-white px-6 md:px-8 py-3 md:py-4 rounded-full font-black text-base md:text-xl btn-glow mb-6 mx-4">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"
+                class="w-6 h-6 md:w-8 md:h-8 mr-2 md:mr-3">
+            <span class="whitespace-nowrap">Join Shark🚀 WebScalper Community</span>
         </a>
-        
-        <div class="mt-16 text-gray-500 text-sm">
+
+        <div class="mt-10 md:mt-16 text-gray-500 text-xs md:text-sm">
             <p class="mb-2">Join our WhatsApp community for updates & support</p>
             <p class="text-[#00ffcc] font-semibold">📞 Contact: +91 92222 92111</p>
         </div>
-        
-        <div class="mt-10 text-gray-600 text-sm">
+
+        <div class="mt-8 md:mt-10 text-gray-600 text-xs md:text-sm px-4">
             &copy; 2024 Shark WebScalper. All rights reserved. <br>
-            <span class="text-xs italic mt-4 block text-gray-700">Trading involves significant risk. Past performance does not guarantee future results.</span>
+            <span class="text-[10px] md:text-xs italic mt-2 md:mt-4 block text-gray-700">Trading involves significant
+                risk. Past performance does not guarantee future results.</span>
         </div>
     </footer>
 
@@ -295,29 +413,37 @@
                     <i class="fas fa-times text-lg sm:text-xl"></i>
                 </button>
             </div>
-            
+
             <form id="eulaForm" class="space-y-3 sm:space-y-4">
                 <div>
-                    <label class="block text-gray-400 text-xs sm:text-sm font-semibold mb-1 sm:mb-2 uppercase tracking-wider">Mobile Number</label>
-                    <input type="tel" id="userMobile" required placeholder="+91 98765 43210" 
+                    <label
+                        class="block text-gray-400 text-xs sm:text-sm font-semibold mb-1 sm:mb-2 uppercase tracking-wider">Mobile
+                        Number</label>
+                    <input type="tel" id="userMobile" required placeholder="+91 98765 43210"
                         class="w-full bg-[#161b22] border border-gray-700 rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base text-white focus:outline-none focus:border-[#00ffcc] transition-colors">
                 </div>
 
                 <div>
-                    <label class="block text-gray-400 text-xs sm:text-sm font-semibold mb-1 sm:mb-2 uppercase tracking-wider">Email Address</label>
-                    <input type="email" id="userEmail" required placeholder="your@email.com" 
+                    <label
+                        class="block text-gray-400 text-xs sm:text-sm font-semibold mb-1 sm:mb-2 uppercase tracking-wider">Email
+                        Address</label>
+                    <input type="email" id="userEmail" required placeholder="your@email.com"
                         class="w-full bg-[#161b22] border border-gray-700 rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base text-white focus:outline-none focus:border-[#00ffcc] transition-colors">
                 </div>
 
                 <div>
-                    <label class="block text-gray-400 text-xs sm:text-sm font-semibold mb-1 sm:mb-2 uppercase tracking-wider">Flattrade User ID</label>
-                    <input type="text" id="flattradeUserId" required placeholder="Your Flattrade User ID" 
+                    <label
+                        class="block text-gray-400 text-xs sm:text-sm font-semibold mb-1 sm:mb-2 uppercase tracking-wider">Flattrade
+                        User ID</label>
+                    <input type="text" id="flattradeUserId" required placeholder="Your Flattrade User ID"
                         class="w-full bg-[#161b22] border border-gray-700 rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base text-white focus:outline-none focus:border-[#00ffcc] transition-colors">
                 </div>
 
-                <div class="bg-[#161b22] border border-gray-700 rounded-lg p-3 h-64 sm:h-72 overflow-y-auto text-xs sm:text-sm text-gray-400 leading-relaxed scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-transparent">
-                    <h4 class="font-bold text-[#00ffcc] mb-2 text-sm sm:text-base uppercase tracking-wide">📋 Important Trading Disclaimer & Risk Disclosure</h4>
-                    
+                <div
+                    class="bg-[#161b22] border border-gray-700 rounded-lg p-3 h-64 sm:h-72 overflow-y-auto text-xs sm:text-sm text-gray-400 leading-relaxed scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-transparent">
+                    <h4 class="font-bold text-[#00ffcc] mb-2 text-sm sm:text-base uppercase tracking-wide">📋 Important
+                        Trading Disclaimer & Risk Disclosure</h4>
+
                     <div class="bg-red-900/20 border-l-4 border-red-500 p-2 mb-3">
                         <h5 class="font-bold text-red-400 mb-1">1. SEBI Mandatory Risk Disclosure</h5>
                         <p class="text-gray-300">As per SEBI study (September 2024), regarding Equity F&O trading:</p>
@@ -330,39 +456,52 @@
 
                     <div class="mb-3">
                         <h5 class="font-bold text-yellow-400 mb-1">2. Software Usage & Technical Risks</h5>
-                        <p class="mb-1">Shark WebScalper is a browser-based tool integrated with Flattrade Broker. By using this software, you acknowledge:</p>
+                        <p class="mb-1">Shark WebScalper is a browser-based tool integrated with Flattrade Broker. By
+                            using this software, you acknowledge:</p>
                         <ul class="list-disc pl-4 space-y-1">
-                            <li><strong>Technical Issues:</strong> Dr. L T Trading Service is not responsible for financial losses from technical glitches, internet issues, software bugs, server downtime, or API failures.</li>
-                            <li><strong>"As Is" Basis:</strong> The software is provided on an "as is" and "as available" basis. You assume all risks associated with trade execution.</li>
+                            <li><strong>Technical Issues:</strong> Dr. L T Trading Service is not responsible for
+                                financial losses from technical glitches, internet issues, software bugs, server
+                                downtime, or API failures.</li>
+                            <li><strong>"As Is" Basis:</strong> The software is provided on an "as is" and "as
+                                available" basis. You assume all risks associated with trade execution.</li>
                         </ul>
                     </div>
 
                     <div class="mb-3">
                         <h5 class="font-bold text-blue-400 mb-1">3. No Financial Advice</h5>
-                        <p class="mb-1">Dr. L T Trading Service is a technology provider, NOT a SEBI-registered Investment Advisor (IA) or Research Analyst (RA):</p>
+                        <p class="mb-1">Dr. L T Trading Service is a technology provider, NOT a SEBI-registered
+                            Investment Advisor (IA) or Research Analyst (RA):</p>
                         <ul class="list-disc pl-4 space-y-1">
                             <li>We do NOT provide trading tips, "sure-shot" signals, or investment strategies</li>
                             <li>All trading decisions are made solely by you</li>
-                            <li>Consult a qualified financial advisor before engaging in high-risk derivative trading</li>
+                            <li>Consult a qualified financial advisor before engaging in high-risk derivative trading
+                            </li>
                         </ul>
                     </div>
 
                     <div class="bg-gray-800/50 p-2 rounded">
                         <h5 class="font-bold text-[#00ffcc] mb-1">Summary of Liability</h5>
-                        <p>Dr. L T Trading Service shall not be held liable for any direct, indirect, or consequential financial losses incurred while using this software. Trading involves substantial risk of capital loss.</p>
+                        <p>Dr. L T Trading Service shall not be held liable for any direct, indirect, or consequential
+                            financial losses incurred while using this software. Trading involves substantial risk of
+                            capital loss.</p>
                     </div>
                 </div>
 
                 <div class="flex items-start gap-2 sm:gap-3 bg-gray-800/30 p-2 sm:p-3 rounded-lg">
-                    <input type="checkbox" id="termsCheck" required class="mt-0.5 sm:mt-1 accent-[#00ffcc] w-4 h-4 flex-shrink-0">
-                    <label for="termsCheck" class="text-xs text-gray-400 leading-tight">"I have read all documents, understood the SEBI risk disclosures, and agree to the terms of use. I accept that I am solely responsible for my trading decisions and any financial outcomes resulting from the use of this software."</label>
+                    <input type="checkbox" id="termsCheck" required
+                        class="mt-0.5 sm:mt-1 accent-[#00ffcc] w-4 h-4 flex-shrink-0">
+                    <label for="termsCheck" class="text-xs text-gray-400 leading-tight">"I have read all documents,
+                        understood the SEBI risk disclosures, and agree to the terms of use. I accept that I am solely
+                        responsible for my trading decisions and any financial outcomes resulting from the use of this
+                        software."</label>
                 </div>
 
-                <button type="submit" id="submitBtn" class="w-full bg-[#00ffcc] text-black py-3 sm:py-4 rounded-lg font-black text-base sm:text-lg btn-glow disabled:opacity-50 disabled:cursor-not-allowed">
+                <button type="submit" id="submitBtn"
+                    class="w-full bg-[#00ffcc] text-black py-3 sm:py-4 rounded-lg font-black text-base sm:text-lg btn-glow disabled:opacity-50 disabled:cursor-not-allowed">
                     ACTIVATE LICENSE
                 </button>
             </form>
-            
+
             <p id="statusMsg" class="mt-3 sm:mt-4 text-center text-xs sm:text-sm hidden px-2"></p>
         </div>
     </div>
@@ -376,31 +515,38 @@
                     <i class="fas fa-times text-lg sm:text-xl"></i>
                 </button>
             </div>
-            
+
             <form id="helpForm" class="space-y-3 sm:space-y-4">
                 <div>
-                    <label class="block text-gray-400 text-xs sm:text-sm font-semibold mb-1 sm:mb-2 uppercase tracking-wider">Your Name</label>
-                    <input type="text" id="helpName" required placeholder="Enter your name" 
+                    <label
+                        class="block text-gray-400 text-xs sm:text-sm font-semibold mb-1 sm:mb-2 uppercase tracking-wider">Your
+                        Name</label>
+                    <input type="text" id="helpName" required placeholder="Enter your name"
                         class="w-full bg-[#161b22] border border-gray-700 rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base text-white focus:outline-none focus:border-[#00ffcc] transition-colors">
                 </div>
 
                 <div>
-                    <label class="block text-gray-400 text-xs sm:text-sm font-semibold mb-1 sm:mb-2 uppercase tracking-wider">Mobile Number</label>
-                    <input type="tel" id="helpMobile" required placeholder="+91 98765 43210" 
+                    <label
+                        class="block text-gray-400 text-xs sm:text-sm font-semibold mb-1 sm:mb-2 uppercase tracking-wider">Mobile
+                        Number</label>
+                    <input type="tel" id="helpMobile" required placeholder="+91 98765 43210"
                         class="w-full bg-[#161b22] border border-gray-700 rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base text-white focus:outline-none focus:border-[#00ffcc] transition-colors">
                 </div>
 
                 <div>
-                    <label class="block text-gray-400 text-xs sm:text-sm font-semibold mb-1 sm:mb-2 uppercase tracking-wider">Query / Question</label>
-                    <textarea id="helpMessage" required rows="4" placeholder="Describe your query or question here..." 
+                    <label
+                        class="block text-gray-400 text-xs sm:text-sm font-semibold mb-1 sm:mb-2 uppercase tracking-wider">Query
+                        / Question</label>
+                    <textarea id="helpMessage" required rows="4" placeholder="Describe your query or question here..."
                         class="w-full bg-[#161b22] border border-gray-700 rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base text-white focus:outline-none focus:border-[#00ffcc] transition-colors resize-none"></textarea>
                 </div>
 
-                <button type="submit" id="helpSubmitBtn" class="w-full bg-[#00ffcc] text-black py-3 sm:py-4 rounded-lg font-black text-base sm:text-lg btn-glow disabled:opacity-50 disabled:cursor-not-allowed">
+                <button type="submit" id="helpSubmitBtn"
+                    class="w-full bg-[#00ffcc] text-black py-3 sm:py-4 rounded-lg font-black text-base sm:text-lg btn-glow disabled:opacity-50 disabled:cursor-not-allowed">
                     SEND QUERY
                 </button>
             </form>
-            
+
             <p id="helpStatusMsg" class="mt-3 sm:mt-4 text-center text-xs sm:text-sm hidden px-2"></p>
         </div>
     </div>
@@ -415,15 +561,15 @@
             else modal.classList.remove('active');
         }
 
-        document.getElementById('eulaForm').addEventListener('submit', async function(e) {
+        document.getElementById('eulaForm').addEventListener('submit', async function (e) {
             e.preventDefault();
-            
+
             const submitBtn = document.getElementById('submitBtn');
             const mobile = document.getElementById('userMobile').value;
             const email = document.getElementById('userEmail').value;
             const flattradeId = document.getElementById('flattradeUserId').value;
             const statusMsg = document.getElementById('statusMsg');
-            
+
             // UI state: Loading
             submitBtn.innerText = "ACTIVATING...";
             submitBtn.disabled = true;
@@ -447,7 +593,7 @@
                 // Success response
                 statusMsg.innerText = "Success! Your license will be activated soon.";
                 statusMsg.classList.replace('text-gray-400', 'text-[#00ffcc]');
-                
+
                 setTimeout(() => {
                     alert("Activation Request Sent! A copy of your signed agreement has been sent to " + email + ". Please check your inbox.");
                     toggleOnboarding(false);
@@ -482,15 +628,15 @@
             else modal.classList.remove('active');
         }
 
-        document.getElementById('helpForm').addEventListener('submit', async function(e) {
+        document.getElementById('helpForm').addEventListener('submit', async function (e) {
             e.preventDefault();
-            
+
             const submitBtn = document.getElementById('helpSubmitBtn');
             const name = document.getElementById('helpName').value;
             const mobile = document.getElementById('helpMobile').value;
             const message = document.getElementById('helpMessage').value;
             const statusMsg = document.getElementById('helpStatusMsg');
-            
+
             // UI state: Loading
             submitBtn.innerText = "SENDING...";
             submitBtn.disabled = true;
@@ -534,7 +680,7 @@ Shark WebScalper Help Forum
                     // Success response
                     statusMsg.innerText = "Query sent successfully! We'll get back to you soon.";
                     statusMsg.classList.replace('text-gray-400', 'text-[#00ffcc]');
-                    
+
                     setTimeout(() => {
                         alert("Query Submitted Successfully! Our team will review and respond shortly.");
                         toggleHelpForum(false);
@@ -561,7 +707,33 @@ Shark WebScalper Help Forum
         document.getElementById('helpForumModal').addEventListener('click', (e) => {
             if (e.target.id === 'helpForumModal') toggleHelpForum(false);
         });
+
+        // Video Player - Load YouTube iframe on click
+        document.querySelectorAll('.video-container').forEach(container => {
+            const thumbnail = container.querySelector('.video-thumbnail');
+            const playBtn = container.querySelector('.video-play-btn');
+            const videoId = container.dataset.videoId;
+
+            const loadVideo = () => {
+                // Create responsive iframe container
+                container.innerHTML = `
+                    <div style="position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #000;">
+                        <iframe 
+                            src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&vq=hd1080&hd=1" 
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                `;
+            };
+
+            thumbnail.addEventListener('click', loadVideo);
+            playBtn.addEventListener('click', loadVideo);
+        });
     </script>
 
 </body>
+
 </html>
