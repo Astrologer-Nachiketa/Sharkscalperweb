@@ -9,11 +9,232 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             background-color: #0a0e17;
             color: #ffffff;
             font-family: 'Inter', sans-serif;
-            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        /* Smooth scroll snap for frames */
+        @media (min-height: 600px) {
+            html {
+                scroll-snap-type: y proximity;
+            }
+
+            section {
+                scroll-snap-align: start;
+            }
+        }
+
+        /* Hero Section - Bullet Style Word-by-Word Animation */
+
+        /* Shark appears first */
+        .hero-shark {
+            opacity: 0;
+            transform: translateY(60px) scale(0.8);
+            animation: sharkAppear 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s forwards;
+        }
+
+        @keyframes sharkAppear {
+            0% {
+                opacity: 0;
+                transform: translateY(60px) scale(0.8) rotate(-10deg);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1) rotate(0deg);
+            }
+        }
+
+        /* Words animate in bullet style - one by one */
+        .word {
+            display: inline-block;
+            opacity: 0;
+            transform: translateX(-30px) scale(0.8);
+            filter: blur(8px);
+        }
+
+        .word.animate {
+            animation: bulletIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        @keyframes bulletIn {
+            0% {
+                opacity: 0;
+                transform: translateX(-30px) scale(0.8);
+                filter: blur(8px);
+            }
+
+            60% {
+                opacity: 1;
+                transform: translateX(5px) scale(1.05);
+                filter: blur(0);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateX(0) scale(1);
+                filter: blur(0);
+            }
+        }
+
+        /* Settle animation for final smooth landing */
+        .settle-in {
+            animation: settleSmooth 0.5s ease-out forwards;
+        }
+
+        @keyframes settleSmooth {
+            0% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-3px);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        /* Feature tags and badges slide in */
+        .slide-item {
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+
+        .slide-item.animate {
+            animation: slideInRight 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        @keyframes slideInRight {
+            0% {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Watch demo subtle bounce */
+        .watch-demo {
+            opacity: 0;
+            animation: fadeInUp 0.5s ease-out forwards;
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Floating shark animation */
+        .shark-float {
+            animation: sharkFloat 4s ease-in-out infinite;
+            filter: drop-shadow(0 0 50px rgba(0, 255, 204, 0.4));
+        }
+
+        @keyframes sharkFloat {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            25% {
+                transform: translateY(-12px) rotate(-2deg);
+            }
+
+            50% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            75% {
+                transform: translateY(-8px) rotate(2deg);
+            }
+        }
+
+        /* Mode badges styling */
+        .mode-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.7rem 1.4rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: clamp(0.75rem, 1.8vw, 0.95rem);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            white-space: nowrap;
+        }
+
+        .mode-badge:hover {
+            transform: translateY(-3px) scale(1.05);
+        }
+
+        .mode-paper {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.9) 0%, rgba(37, 99, 235, 0.9) 100%);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.35);
+        }
+
+        .mode-real {
+            background: linear-gradient(135deg, rgba(0, 255, 204, 0.9) 0%, rgba(0, 212, 170, 0.9) 100%);
+            color: #0a0e17;
+            box-shadow: 0 6px 20px rgba(0, 255, 204, 0.35);
+        }
+
+        /* Feature tags styling */
+        .feature-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(0, 255, 204, 0.08);
+            border: 1px solid rgba(0, 255, 204, 0.2);
+            border-radius: 50px;
+            font-size: clamp(0.7rem, 1.6vw, 0.85rem);
+            color: #00ffcc;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .feature-tag:hover {
+            background: rgba(0, 255, 204, 0.15);
+            border-color: rgba(0, 255, 204, 0.4);
+            transform: translateY(-2px);
+        }
+
+        /* Responsive typography */
+        .hero-title-main {
+            font-size: clamp(2.5rem, 8vw, 5.5rem);
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-title-sub {
+            font-size: clamp(1.8rem, 5vw, 3.5rem);
+            line-height: 1.2;
+            letter-spacing: -0.01em;
+        }
+
+        .hero-text {
+            font-size: clamp(0.9rem, 2.2vw, 1.25rem);
+            line-height: 1.6;
         }
 
         .hero-gradient {
@@ -163,243 +384,292 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section
-        class="hero-gradient min-h-[85vh] md:min-h-screen flex flex-col items-center justify-center text-center px-4 md:px-6 pt-20 md:pt-24 pb-8">
-        <div class="mb-3 md:mb-4 shark-swim">
-            <img src="sharkimg.png" alt="Shark Mascot" class="w-16 h-16 md:w-24 md:h-24 object-contain drop-shadow-lg">
-        </div>
-        <h1 class="text-3xl sm:text-4xl md:text-7xl font-extrabold mb-3 md:mb-4 tracking-tight leading-tight px-2">
-            Trade Like a <span class="accent-color">Shark.</span>
-        </h1>
-        <p class="text-gray-400 text-base sm:text-lg md:text-xl max-w-2xl mb-6 md:mb-10 leading-relaxed px-4">
-            The Ultimate Web-Based Trading Bot. No Servers. No Coding. <br class="hidden md:block"> Just Pure Profit
-            Execution via Flattrade.
-        </p>
-        <div class="flex flex-col sm:flex-row gap-3 md:gap-6 w-full sm:w-auto px-4 sm:px-0">
-            <button onclick="toggleOnboarding(true)"
-                class="bg-[#00ffcc] text-black px-8 md:px-12 py-3 md:py-4 rounded-full font-bold text-base md:text-lg btn-glow w-full sm:w-auto">
-                Get Started Now
-            </button>
-            <a href="#tutorials"
-                class="border border-gray-600 px-8 md:px-12 py-3 md:py-4 rounded-full font-bold text-base md:text-lg hover:bg-gray-800 transition-all flex items-center justify-center gap-2 w-full sm:w-auto">
-                <i class="fas fa-play text-xs md:text-sm"></i> Watch Demo
-            </a>
-        </div>
+    <!-- FRAME 1: Hero - Bullet Style Word Animation -->
+    <section id="hero"
+        class="hero-gradient h-screen flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8 pt-14 sm:pt-16">
 
-    </section>
+        <div class="w-full max-w-4xl mx-auto flex flex-col items-center justify-center h-full" id="hero-content">
 
-    <!-- Features -->
-    <section id="features" class="py-16 md:py-32 px-4 md:px-6 max-w-6xl mx-auto">
-        <div class="text-center mb-10 md:mb-20">
-            <h2 class="text-2xl md:text-5xl font-extrabold mb-3 md:mb-4">Engineered for <span
-                    class="accent-color">Speed</span></h2>
-            <p class="text-gray-400 text-sm md:text-base">Institutional grade tools for the modern retail trader.</p>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-10">
-            <div class="p-6 md:p-10 video-card">
-                <div
-                    class="w-12 h-12 md:w-16 md:h-16 bg-[#00ffcc11] rounded-xl md:rounded-2xl flex items-center justify-center mb-4 md:mb-8">
-                    <i class="fas fa-window-maximize text-2xl md:text-3xl accent-color"></i>
-                </div>
-                <h3 class="text-xl md:text-2xl font-bold mb-2 md:mb-4">Browser Native</h3>
-                <p class="text-gray-400 text-sm md:text-base leading-relaxed">Run directly in Chrome or Edge. No VPS
-                    costs or complicated Python environments required.</p>
+            <!-- 1. Shark appears first -->
+            <div class="hero-shark mb-3 sm:mb-4">
+                <img src="sharkimg.png" alt="Shark Mascot"
+                    class="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 object-contain shark-float">
             </div>
-            <div class="p-6 md:p-10 video-card border-[#00ffcc44]">
-                <div
-                    class="w-12 h-12 md:w-16 md:h-16 bg-[#00ffcc11] rounded-xl md:rounded-2xl flex items-center justify-center mb-4 md:mb-8">
-                    <i class="fas fa-bolt text-2xl md:text-3xl accent-color"></i>
-                </div>
-                <h3 class="text-xl md:text-2xl font-bold mb-2 md:mb-4">0.5ms Execution</h3>
-                <p class="text-gray-400 text-sm md:text-base leading-relaxed">Direct Flattrade API integration ensures
-                    your orders hit the exchange with minimal latency.</p>
-            </div>
-            <div class="p-6 md:p-10 video-card">
-                <div
-                    class="w-12 h-12 md:w-16 md:h-16 bg-[#00ffcc11] rounded-xl md:rounded-2xl flex items-center justify-center mb-4 md:mb-8">
-                    <i class="fab fa-telegram-plane text-2xl md:text-3xl accent-color"></i>
-                </div>
-                <h3 class="text-xl md:text-2xl font-bold mb-2 md:mb-4">Real-time Pings</h3>
-                <p class="text-gray-400 text-sm md:text-base leading-relaxed">Instant Telegram notifications for every
-                    entry, exit, and trailing stop-loss movement.</p>
-            </div>
-        </div>
-    </section>
 
-    <!-- Video Tutorials Section -->
-    <section id="tutorials" class="py-16 md:py-32 px-4 md:px-6 bg-[#0d1117] border-y border-gray-800">
-        <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-10 md:mb-20">
-                <h2 class="text-2xl md:text-5xl font-extrabold mb-3 md:mb-4">Master the <span
-                        class="accent-color">Shark</span></h2>
-                <p class="text-gray-400 text-sm md:text-base">Step-by-step video guides to get you trading in minutes.
+            <!-- 2. Title Line 1: "Trade Like a" -->
+            <div class="mb-1 sm:mb-2 overflow-hidden">
+                <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
+                    <span class="word" data-delay="1000">Trade</span>
+                    <span class="word" data-delay="1100">Like</span>
+                    <span class="word" data-delay="1200">a</span>
+                </h1>
+            </div>
+
+            <!-- 3. Title Line 2: "Shark" -->
+            <div class="mb-4 sm:mb-5 overflow-hidden">
+                <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold accent-color leading-tight">
+                    <span class="word" data-delay="1350">Shark</span>
+                </h1>
+            </div>
+
+            <!-- 4. Subtitle Line 1: "The Ultimate Web-Based Trading Bot." -->
+            <div class="mb-1 overflow-hidden">
+                <p class="text-base sm:text-lg md:text-xl text-gray-300 font-medium">
+                    <span class="word" data-delay="1600">The</span>
+                    <span class="word" data-delay="1680">Ultimate</span>
+                    <span class="word" data-delay="1760">Web-Based</span>
+                    <span class="word" data-delay="1840">Trading</span>
+                    <span class="word" data-delay="1920">Bot.</span>
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12">
-                <!-- Tutorial 1 - Live Scalping Session -->
-                <div class="video-card bg-[#1c2128]">
-                    <div class="aspect-video w-full relative video-container" data-video-id="_4TPpFImy_s">
-                        <img src="https://img.youtube.com/vi/_4TPpFImy_s/maxresdefault.jpg"
-                            alt="Live Scalping Session Thumbnail"
+            <!-- 5. Subtitle Line 2: "No Servers. No Coding." -->
+            <div class="mb-1 overflow-hidden">
+                <p class="text-base sm:text-lg md:text-xl text-gray-300 font-medium">
+                    <span class="word" data-delay="2100">No</span>
+                    <span class="word" data-delay="2180">Servers.</span>
+                    <span class="word" data-delay="2300">No</span>
+                    <span class="word" data-delay="2380">Coding.</span>
+                </p>
+            </div>
+
+            <!-- 6. Subtitle Line 3: "Just Pure Profit Execution via Flattrade." -->
+            <div class="mb-4 sm:mb-5 overflow-hidden">
+                <p class="text-base sm:text-lg md:text-xl font-semibold">
+                    <span class="word text-[#00ffcc]" data-delay="2550">Just</span>
+                    <span class="word text-[#00ffcc]" data-delay="2630">Pure</span>
+                    <span class="word text-[#00ffcc]" data-delay="2710">Profit</span>
+                    <span class="word text-[#00ffcc]" data-delay="2790">Execution</span>
+                    <span class="word text-[#00ffcc]" data-delay="2870">via</span>
+                    <span class="word text-[#00ffcc]" data-delay="2950">Flattrade.</span>
+                </p>
+            </div>
+
+            <!-- 7. Feature Tags -->
+            <div class="flex flex-wrap justify-center gap-2 mb-4 sm:mb-5" id="feature-tags">
+                <span class="feature-tag slide-item text-xs sm:text-sm" data-delay="3200">
+                    <i class="fas fa-window-maximize"></i> Browser Native
+                </span>
+                <span class="feature-tag slide-item text-xs sm:text-sm" data-delay="3350">
+                    <i class="fas fa-bolt"></i> 0.5ms Execution
+                </span>
+                <span class="feature-tag slide-item text-xs sm:text-sm" data-delay="3500">
+                    <i class="fas fa-telegram-plane"></i> Real-time Pings
+                </span>
+            </div>
+
+            <!-- 8. Mode Badges -->
+            <div class="flex flex-wrap justify-center gap-2 sm:gap-3 mb-5 sm:mb-6" id="mode-badges">
+                <span class="mode-badge slide-item text-xs sm:text-sm py-2 px-4" data-delay="3700">
+                    <i class="fas fa-file-alt"></i> Paper Mode Available
+                </span>
+                <span class="mode-badge slide-item text-xs sm:text-sm py-2 px-4" data-delay="3900">
+                    <i class="fas fa-chart-line"></i> Real Mode Available
+                </span>
+            </div>
+
+            <!-- 9. Watch Demo -->
+            <div class="watch-demo" data-delay="4100">
+                <a href="#features"
+                    class="inline-flex items-center gap-2 text-gray-400 hover:text-[#00ffcc] transition-colors text-sm sm:text-base group">
+                    <span>Watch Demo</span>
+                    <i class="fas fa-chevron-down group-hover:animate-bounce"></i>
+                </a>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- FRAME 2: Features - Fits exactly in viewport -->
+    <section id="features"
+        class="h-screen flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 py-14 sm:py-16">
+        <div class="w-full max-w-6xl mx-auto">
+
+            <!-- Header -->
+            <div class="text-center mb-6 sm:mb-8 lg:mb-10">
+                <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold mb-2 sm:mb-3">
+                    Engineered for <span class="accent-color">Speed</span>
+                </h2>
+                <p class="text-gray-400 text-sm sm:text-base md:text-lg">
+                    Institutional grade tools for the modern retail trader.
+                </p>
+            </div>
+
+            <!-- 3 Feature Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5 lg:gap-6">
+
+                <!-- Card 1: Browser Native -->
+                <div
+                    class="feature-card bg-[#161b22] border border-[#30363d] rounded-xl sm:rounded-2xl p-5 sm:p-6 lg:p-8 text-center hover:border-[#00ffcc55] transition-all">
+                    <div
+                        class="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-[#00ffcc11] rounded-xl sm:rounded-2xl flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                        <i class="fas fa-window-maximize text-xl sm:text-2xl lg:text-3xl accent-color"></i>
+                    </div>
+                    <h3 class="text-lg sm:text-xl lg:text-2xl font-bold mb-2 sm:mb-3">Browser Native</h3>
+                    <p class="text-gray-400 text-xs sm:text-sm lg:text-base leading-relaxed">
+                        Run directly in Chrome or Edge. No VPS costs or complicated Python environments required.
+                    </p>
+                </div>
+
+                <!-- Card 2: 0.5ms Execution -->
+                <div
+                    class="feature-card bg-[#161b22] border border-[#00ffcc44] rounded-xl sm:rounded-2xl p-5 sm:p-6 lg:p-8 text-center hover:border-[#00ffcc] transition-all">
+                    <div
+                        class="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-[#00ffcc11] rounded-xl sm:rounded-2xl flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                        <i class="fas fa-bolt text-xl sm:text-2xl lg:text-3xl accent-color"></i>
+                    </div>
+                    <h3 class="text-lg sm:text-xl lg:text-2xl font-bold mb-2 sm:mb-3">0.5ms Execution</h3>
+                    <p class="text-gray-400 text-xs sm:text-sm lg:text-base leading-relaxed">
+                        Direct Flattrade API integration ensures your orders hit the exchange with minimal latency.
+                    </p>
+                </div>
+
+                <!-- Card 3: Real-time Pings -->
+                <div
+                    class="feature-card bg-[#161b22] border border-[#30363d] rounded-xl sm:rounded-2xl p-5 sm:p-6 lg:p-8 text-center hover:border-[#00ffcc55] transition-all">
+                    <div
+                        class="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-[#00ffcc11] rounded-xl sm:rounded-2xl flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                        <i class="fab fa-telegram-plane text-xl sm:text-2xl lg:text-3xl accent-color"></i>
+                    </div>
+                    <h3 class="text-lg sm:text-xl lg:text-2xl font-bold mb-2 sm:mb-3">Real-time Pings</h3>
+                    <p class="text-gray-400 text-xs sm:text-sm lg:text-base leading-relaxed">
+                        Instant Telegram notifications for every entry, exit, and trailing stop-loss movement.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FRAME 3: Tutorials - Fits exactly in viewport -->
+    <section id="tutorials"
+        class="h-screen flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 py-14 sm:py-16 bg-[#0d1117] border-y border-gray-800">
+        <div class="w-full max-w-6xl mx-auto">
+
+            <!-- Header -->
+            <div class="text-center mb-6 sm:mb-8 lg:mb-10">
+                <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold mb-2 sm:mb-3">
+                    Master the <span class="accent-color">Shark</span>
+                </h2>
+                <p class="text-gray-400 text-sm sm:text-base md:text-lg">
+                    Step-by-step video guides to get you trading in minutes.
+                </p>
+            </div>
+
+            <!-- 2 Video Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5 lg:gap-6">
+
+                <!-- Tutorial 1 - SharkWebScalper Intro -->
+                <div
+                    class="video-card bg-[#1c2128] rounded-xl sm:rounded-2xl overflow-hidden hover:border-[#00ffcc55] transition-all">
+                    <div class="aspect-video w-full relative video-container" data-video-id="Urr5W1tlOl0">
+                        <img src="https://img.youtube.com/vi/Urr5W1tlOl0/maxresdefault.jpg"
+                            alt="SharkWebScalper Intro Thumbnail"
                             class="w-full h-full object-cover cursor-pointer video-thumbnail">
                         <div
-                            class="absolute inset-0 bg-black/40 flex items-center justify-center cursor-pointer video-play-btn">
+                            class="absolute inset-0 bg-black/40 flex items-center justify-center cursor-pointer video-play-btn hover:bg-black/30 transition-all">
                             <div
-                                class="w-12 h-12 md:w-16 md:h-16 bg-red-600 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform">
-                                <i class="fas fa-play text-white text-lg md:text-2xl ml-1"></i>
+                                class="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-red-600 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform">
+                                <i class="fas fa-play text-white text-lg sm:text-xl ml-1"></i>
                             </div>
                         </div>
                     </div>
-                    <div class="p-4 md:p-8">
-                        <div class="flex items-center gap-2 md:gap-3 mb-2 md:mb-3">
+                    <div class="p-4 sm:p-5 lg:p-6">
+                        <div class="flex items-center gap-2 mb-2 sm:mb-3">
                             <span
-                                class="px-2 md:px-3 py-1 bg-purple-500/20 text-purple-400 text-[10px] md:text-xs font-bold rounded-full uppercase">Live</span>
-                            <span class="text-gray-500 text-xs md:text-sm">Scalping</span>
+                                class="px-2 py-0.5 sm:py-1 bg-[#00ffcc22] text-[#00ffcc] text-[10px] sm:text-xs font-bold rounded-full uppercase">Intro</span>
+                            <span class="text-gray-500 text-xs sm:text-sm">Getting Started</span>
                         </div>
-                        <h3 class="font-bold text-lg md:text-2xl mb-2 md:mb-3">Live Scalping Session</h3>
-                        <p class="text-gray-400 text-sm md:text-base leading-relaxed italic">"Real-time scalping
-                            strategies and execution in live market conditions."</p>
+                        <h3 class="font-bold text-base sm:text-lg lg:text-xl mb-1 sm:mb-2">SharkWebScalper Intro</h3>
+                        <p class="text-gray-400 text-xs sm:text-sm leading-relaxed italic">"Complete introduction to the
+                            ultimate web-based trading bot - features, setup, and how to start trading."</p>
                     </div>
                 </div>
 
                 <!-- Tutorial 2 - Complete Platform Setup -->
-                <div class="video-card bg-[#1c2128]">
+                <div
+                    class="video-card bg-[#1c2128] rounded-xl sm:rounded-2xl overflow-hidden hover:border-[#00ffcc55] transition-all">
                     <div class="aspect-video w-full relative video-container" data-video-id="AWA8kxYBpoQ">
                         <img src="https://img.youtube.com/vi/AWA8kxYBpoQ/maxresdefault.jpg"
                             alt="Complete Platform Setup Thumbnail"
                             class="w-full h-full object-cover cursor-pointer video-thumbnail">
                         <div
-                            class="absolute inset-0 bg-black/40 flex items-center justify-center cursor-pointer video-play-btn">
+                            class="absolute inset-0 bg-black/40 flex items-center justify-center cursor-pointer video-play-btn hover:bg-black/30 transition-all">
                             <div
-                                class="w-12 h-12 md:w-16 md:h-16 bg-red-600 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform">
-                                <i class="fas fa-play text-white text-lg md:text-2xl ml-1"></i>
+                                class="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-red-600 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform">
+                                <i class="fas fa-play text-white text-lg sm:text-xl ml-1"></i>
                             </div>
                         </div>
                     </div>
-                    <div class="p-4 md:p-8">
-                        <div class="flex items-center gap-2 md:gap-3 mb-2 md:mb-3">
+                    <div class="p-4 sm:p-5 lg:p-6">
+                        <div class="flex items-center gap-2 mb-2 sm:mb-3">
                             <span
-                                class="px-2 md:px-3 py-1 bg-[#00ffcc22] text-[#00ffcc] text-[10px] md:text-xs font-bold rounded-full uppercase">Setup</span>
-                            <span class="text-gray-500 text-xs md:text-sm">Complete Guide</span>
+                                class="px-2 py-0.5 sm:py-1 bg-[#00ffcc22] text-[#00ffcc] text-[10px] sm:text-xs font-bold rounded-full uppercase">Setup</span>
+                            <span class="text-gray-500 text-xs sm:text-sm">Complete Guide</span>
                         </div>
-                        <h3 class="font-bold text-lg md:text-2xl mb-2 md:mb-3">Complete Platform Setup</h3>
-                        <p class="text-gray-400 text-sm md:text-base leading-relaxed italic">"Step-by-step walkthrough
-                            for initial platform configuration and setup."</p>
+                        <h3 class="font-bold text-base sm:text-lg lg:text-xl mb-1 sm:mb-2">Complete Platform Setup</h3>
+                        <p class="text-gray-400 text-xs sm:text-sm leading-relaxed italic">"Step-by-step walkthrough for
+                            initial platform configuration and setup."</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Pricing Section -->
-    <section id="pricing" class="py-16 md:py-32 px-4 md:px-6">
-        <div class="max-w-6xl mx-auto text-center">
-            <h2 class="text-2xl md:text-5xl font-extrabold mb-3 md:mb-4">Choose Your <span
-                    class="accent-color">Plan</span></h2>
-            <p class="text-gray-400 mb-10 md:mb-20 text-base md:text-lg px-4">Scale your trading with professional
-                automation.</p>
+    <!-- FRAME 4: Pricing - Fits exactly in viewport -->
+    <section id="pricing"
+        class="h-screen flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 py-14 sm:py-16">
+        <div class="w-full max-w-6xl mx-auto">
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-10 items-stretch">
-                <!-- Starter -->
-                <div class="video-card p-6 md:p-12 flex flex-col">
-                    <h3 class="text-lg md:text-xl font-semibold text-gray-400 mb-2 md:mb-4">Starter</h3>
-                    <div class="text-3xl md:text-5xl font-extrabold mb-6 md:mb-10">₹1,999<span
-                            class="text-sm md:text-lg font-normal text-gray-500">/mo</span></div>
-                    <ul class="text-left space-y-3 md:space-y-6 mb-6 md:mb-12 flex-grow text-sm md:text-base">
-                        <li class="flex items-center"><i
-                                class="fas fa-check-circle accent-color mr-2 md:mr-3 text-base md:text-xl"></i> 1 Active
-                            Strategy</li>
-                        <li class="flex items-center"><i
-                                class="fas fa-check-circle accent-color mr-2 md:mr-3 text-base md:text-xl"></i>
-                            Flattrade Integration</li>
-                        <li class="flex items-center"><i
-                                class="fas fa-check-circle accent-color mr-2 md:mr-3 text-base md:text-xl"></i> Standard
-                            Support</li>
-                    </ul>
-                    <button onclick="toggleOnboarding(true)"
-                        class="w-full border border-gray-600 py-3 md:py-4 rounded-full font-bold text-sm md:text-base hover:bg-gray-800 transition-all">Get
-                        Starter</button>
-                </div>
+            <!-- Header -->
+            <div class="text-center mb-6 sm:mb-8">
+                <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold mb-2 sm:mb-3">
+                    Choose Your <span class="accent-color">Plan</span>
+                </h2>
+                <p class="text-gray-400 text-sm sm:text-base md:text-lg">
+                    Scale your trading with professional automation.
+                </p>
+            </div>
 
-                <!-- Pro -->
-                <div
-                    class="video-card p-6 md:p-12 flex flex-col border-[#00ffcc] relative bg-[#1c2128] shadow-[0_0_50px_rgba(0,255,204,0.1)] md:scale-110 z-10">
-                    <div
-                        class="absolute -top-3 md:-top-5 left-1/2 -translate-x-1/2 bg-[#00ffcc] text-black text-[10px] md:text-xs font-black px-4 md:px-8 py-1.5 md:py-2 rounded-full uppercase tracking-widest">
-                        Recommended</div>
-                    <h3 class="text-lg md:text-xl font-semibold text-[#00ffcc] mb-2 md:mb-4">Professional</h3>
-                    <div class="text-4xl md:text-6xl font-extrabold mb-6 md:mb-10">₹4,499<span
-                            class="text-sm md:text-lg font-normal text-gray-500">/mo</span></div>
-                    <ul
-                        class="text-left space-y-3 md:space-y-6 mb-6 md:mb-12 flex-grow text-gray-200 text-sm md:text-base">
-                        <li class="flex items-center"><i
-                                class="fas fa-bolt accent-color mr-2 md:mr-3 text-base md:text-xl"></i> Unlimited
-                            Strategies</li>
-                        <li class="flex items-center"><i
-                                class="fas fa-bolt accent-color mr-2 md:mr-3 text-base md:text-xl"></i> Trailing
-                            Stoploss Pro</li>
-                        <li class="flex items-center"><i
-                                class="fas fa-bolt accent-color mr-2 md:mr-3 text-base md:text-xl"></i> Multi-Account
-                            Sync</li>
-                        <li class="flex items-center"><i
-                                class="fas fa-bolt accent-color mr-2 md:mr-3 text-base md:text-xl"></i> Priority
-                            Telegram Pings</li>
-                    </ul>
-                    <button onclick="toggleOnboarding(true)"
-                        class="w-full bg-[#00ffcc] text-black py-4 md:py-5 rounded-full font-extrabold text-sm md:text-base btn-glow">Go
-                        Professional</button>
-                </div>
-
-                <!-- Lifetime -->
-                <div class="video-card p-6 md:p-12 flex flex-col">
-                    <h3 class="text-lg md:text-xl font-semibold text-gray-400 mb-2 md:mb-4">Lifetime</h3>
-                    <div class="text-3xl md:text-5xl font-extrabold mb-6 md:mb-10">₹19,999<span
-                            class="text-sm md:text-lg font-normal text-gray-500">/once</span></div>
-                    <ul class="text-left space-y-3 md:space-y-6 mb-6 md:mb-12 flex-grow text-sm md:text-base">
-                        <li class="flex items-center"><i
-                                class="fas fa-infinity accent-color mr-2 md:mr-3 text-base md:text-xl"></i> All Pro
-                            Features</li>
-                        <li class="flex items-center"><i
-                                class="fas fa-infinity accent-color mr-2 md:mr-3 text-base md:text-xl"></i> Lifetime
-                            Updates</li>
-                        <li class="flex items-center"><i
-                                class="fas fa-infinity accent-color mr-2 md:mr-3 text-base md:text-xl"></i> 1-on-1 Setup
-                            Call</li>
-                    </ul>
-                    <button onclick="toggleOnboarding(true)"
-                        class="w-full border border-gray-600 py-3 md:py-4 rounded-full font-bold text-sm md:text-base hover:bg-gray-800 transition-all">Go
-                        Lifetime</button>
+            <!-- 3 Pricing Cards -->
+            <div id="pricing-container" class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5 items-stretch">
+                <!-- Data will be loaded dynamically from Google Sheets -->
+                <div class="col-span-full text-center py-10">
+                    <i class="fas fa-spinner fa-spin text-3xl accent-color mb-4"></i>
+                    <p class="text-gray-400">Loading plans...</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="py-12 md:py-24 text-center border-t border-gray-800 px-4 md:px-6">
-        <h2 class="text-2xl md:text-5xl font-black mb-6 md:mb-10 italic uppercase tracking-tighter">Join the 1% Club.
+    <footer class="py-8 sm:py-12 lg:py-16 text-center border-t border-gray-800 px-4 sm:px-6">
+        <h2
+            class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black mb-3 sm:mb-4 italic uppercase tracking-tighter">
+            Join the 1% Club.
         </h2>
-        <p class="text-gray-400 mb-8 md:mb-12 text-base md:text-xl max-w-2xl mx-auto px-4">500+ traders are already
-            automating their wealth. <br class="hidden md:block"> Why are you waiting?</p>
+        <p class="text-gray-400 mb-4 sm:mb-6 text-sm sm:text-base lg:text-lg max-w-xl mx-auto px-4">
+            500+ traders are already automating their wealth.
+        </p>
 
         <!-- WhatsApp Community Button -->
-        <a href="https://chat.whatsapp.com/FKOJ2xbDA93EbisBHSaVTF" target="_blank"
-            class="inline-flex items-center bg-[#25D366] text-white px-6 md:px-8 py-3 md:py-4 rounded-full font-black text-base md:text-xl btn-glow mb-6 mx-4">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"
-                class="w-6 h-6 md:w-8 md:h-8 mr-2 md:mr-3">
-            <span class="whitespace-nowrap">Join Shark🚀 WebScalper Community</span>
+        <a href="https://chat.whatsapp.com/FKOJ2xbDA93EbisBHSaVTF" target="_blank" rel="noopener noreferrer"
+            class="inline-flex items-center bg-[#25D366] text-white px-5 sm:px-6 lg:px-8 py-2.5 sm:py-3 rounded-full font-black text-sm sm:text-base lg:text-lg btn-glow mb-4 sm:mb-6">
+            <i class="fab fa-whatsapp text-lg sm:text-xl lg:text-2xl mr-2"></i>
+            <span class="whitespace-nowrap">Join Community</span>
         </a>
 
-        <div class="mt-10 md:mt-16 text-gray-500 text-xs md:text-sm">
-            <p class="mb-2">Join our WhatsApp community for updates & support</p>
-            <p class="text-[#00ffcc] font-semibold">📞 Contact: +91 92222 92111</p>
+        <div class="mt-6 sm:mt-8 text-gray-500 text-xs sm:text-sm">
+            <p class="mb-1">Join our WhatsApp community for updates & support</p>
+            <p class="text-[#00ffcc] font-semibold">📞 +91 92222 92111</p>
         </div>
 
-        <div class="mt-8 md:mt-10 text-gray-600 text-xs md:text-sm px-4">
+        <div class="mt-6 text-gray-600 text-[10px] sm:text-xs px-4">
             &copy; 2024 Shark WebScalper. All rights reserved. <br>
-            <span class="text-[10px] md:text-xs italic mt-2 md:mt-4 block text-gray-700">Trading involves significant
-                risk. Past performance does not guarantee future results.</span>
+            <span class="italic mt-1 sm:mt-2 block text-gray-700">Trading involves significant risk. Past performance
+                does not guarantee future results.</span>
         </div>
     </footer>
 
@@ -554,6 +824,141 @@
     <script>
         // Replace this with your actual Web App URL after deploying
         const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbySp7KSNQrdX0fIPOjq6_YKvq5F8IC1sPEScudjxZ5pOsVxYtgylieBb55J88EunCyy/exec";
+
+        // Bullet-style word animation on page load
+        document.addEventListener('DOMContentLoaded', function () {
+            // Animate words one by one in bullet style
+            const words = document.querySelectorAll('.word');
+            words.forEach((word, index) => {
+                const delay = parseInt(word.getAttribute('data-delay')) || (index * 80);
+                setTimeout(() => {
+                    word.classList.add('animate');
+                }, delay);
+            });
+
+            // Animate feature tags sliding in
+            const slideItems = document.querySelectorAll('.slide-item');
+            slideItems.forEach((item) => {
+                const delay = parseInt(item.getAttribute('data-delay')) || 3200;
+                setTimeout(() => {
+                    item.classList.add('animate');
+                }, delay);
+            });
+
+            // Animate watch demo
+            const watchDemo = document.querySelector('.watch-demo');
+            if (watchDemo) {
+                const delay = parseInt(watchDemo.getAttribute('data-delay')) || 4100;
+                setTimeout(() => {
+                    watchDemo.style.opacity = '1';
+                }, delay);
+            }
+
+            // Smooth settle at the end - add settle class to hero content
+            setTimeout(() => {
+                const heroContent = document.getElementById('hero-content');
+                if (heroContent) {
+                    heroContent.classList.add('settle-in');
+                }
+            }, 4300);
+
+            // Load pricing data
+            loadPricing();
+        });
+
+        async function loadPricing() {
+            const base_url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRfTRAtJE6m48RHyRVgmqbbkKoVLhRyW8R0EEUZNc9zCJkD4DQe_7AgHCmW9H4C4wB2lDiLkvK94UfH/pub?gid=233235271&single=true&output=csv";
+            // Cache-busting: add a timestamp to the URL to force Google to serve the latest version
+            const CSV_URL = `${base_url}&t=${new Date().getTime()}`;
+
+            try {
+                const response = await fetch(CSV_URL, {
+                    cache: "no-store", // Tell the browser not to use its cache
+                    headers: {
+                        'pragma': 'no-cache',
+                        'cache-control': 'no-cache'
+                    }
+                });
+                const csvData = await response.text();
+
+                // Parse CSV rows
+                const rows = csvData.split('\n');
+                const headers = rows[0].split(',');
+                const dataRows = rows.slice(1).filter(row => row.trim() !== '');
+
+                const container = document.getElementById('pricing-container');
+
+                if (dataRows.length === 0) {
+                    container.innerHTML = '<p class="col-span-full text-center text-gray-500">No plans available.</p>';
+                    return;
+                }
+
+                container.innerHTML = dataRows.map(row => {
+                    // Improved CSV parsing to handle quoted fields with commas
+                    const cols = [];
+                    let current = '';
+                    let inQuotes = false;
+
+                    for (let i = 0; i < row.length; i++) {
+                        const char = row[i];
+                        if (char === '"' && (i === 0 || row[i - 1] !== '\\')) {
+                            inQuotes = !inQuotes;
+                        } else if (char === ',' && !inQuotes) {
+                            cols.push(current.trim().replace(/^"|"$/g, ''));
+                            current = '';
+                        } else {
+                            current += char;
+                        }
+                    }
+                    cols.push(current.trim().replace(/^"|"$/g, ''));
+
+                    // Map columns based on predefined order: id, name, price, period, features, buttonText, isRecommended, icon
+                    const [id, name, price, period, featuresStr, buttonText, isRecommended, icon] = cols;
+                    const features = featuresStr ? featuresStr.split(',').map(f => f.trim()) : [];
+                    const recommended = isRecommended && isRecommended.toUpperCase() === 'TRUE';
+
+                    const cardClass = recommended
+                        ? 'pricing-card bg-[#1c2128] border-2 border-[#00ffcc] rounded-xl sm:rounded-2xl p-5 sm:p-6 lg:p-8 flex flex-col relative shadow-[0_0_30px_rgba(0,255,204,0.15)] md:scale-105 z-10'
+                        : 'pricing-card bg-[#161b22] border border-[#30363d] rounded-xl sm:rounded-2xl p-5 sm:p-6 lg:p-8 flex flex-col hover:border-gray-600 transition-all';
+
+                    const badge = recommended
+                        ? `<div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#00ffcc] text-black text-[10px] sm:text-xs font-black px-3 sm:px-4 py-1 rounded-full uppercase tracking-wider">Recommended</div>`
+                        : '';
+
+                    const iconClass = icon || (recommended ? 'fas fa-bolt' : 'fas fa-check-circle');
+                    const textClass = recommended ? 'text-[#00ffcc]' : 'text-gray-400';
+
+                    return `
+                        <div class="${cardClass}">
+                            ${badge}
+                            <h3 class="text-base sm:text-lg font-semibold ${textClass} mb-2 sm:mb-3">${name}</h3>
+                            <div class="text-2xl sm:text-3xl lg:text-4xl font-extrabold mb-4 sm:mb-5">
+                                ${price}<span class="text-xs sm:text-sm font-normal text-gray-500">${period}</span>
+                            </div>
+                            <ul class="text-left space-y-2 sm:space-y-3 mb-5 sm:mb-6 flex-grow text-xs sm:text-sm ${recommended ? 'text-gray-200' : ''}">
+                                ${features.map(f => `
+                                    <li class="flex items-center">
+                                        <i class="${iconClass} accent-color mr-2 text-sm"></i> ${f}
+                                    </li>
+                                `).join('')}
+                            </ul>
+                            <button onclick="toggleOnboarding(true)"
+                                class="w-full ${recommended ? 'bg-[#00ffcc] text-black py-3 sm:py-3.5' : 'border border-gray-600 py-2.5 sm:py-3'} rounded-full font-bold text-xs sm:text-sm ${recommended ? 'btn-glow font-extrabold' : 'hover:bg-gray-800'} transition-all">
+                                ${buttonText}
+                            </button>
+                        </div>
+                    `;
+                }).join('');
+
+            } catch (error) {
+                console.error("Error loading pricing data:", error);
+                document.getElementById('pricing-container').innerHTML = `
+                    <p class="col-span-full text-center text-red-400 py-10">
+                        Failed to load pricing plans. Please try again later.
+                    </p>
+                `;
+            }
+        }
 
         function toggleOnboarding(show) {
             const modal = document.getElementById('onboardingModal');
